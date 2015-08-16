@@ -1,0 +1,17 @@
+---
+title: The Archives
+---
+    
+<ul>
+  <% blog.articles.group_by {|a| a.date.year }.each do |year, articles| %>
+      <h4><%= year %></h4>
+  <hr>
+      <ul>
+        <% articles.each do |article| %>
+            <h3> <%= link_to article.data.pagetitle, article %></h3>
+        <small><%= article.date.strftime('Published on %e of %B') %></small>
+<hr>
+        <% end %>
+      </ul>
+  <% end %>
+</ul>
