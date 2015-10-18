@@ -3,8 +3,27 @@ pageable: true
 per_page: 30
 ---
    <% blog.articles[0..30].each do |article| %>
-<h3> <%= link_to article.title, article %></h3>
-  <%= article.date.strftime('%b %e %Y') %> | <%= link_to 'Permalink', article %> 
+<% page_articles[0..30].each do |article| %>
+
+<% if article.data.link %>
+<!-- Link Posts -->
+<h3> <%= link_to article.title, article.data.link %></h3>
+
+<% else %>
+
+<!-- Non link post -->
+<h3 class="non-link"> <%= link_to article.title, article %></h3>
+<% end %>
+
+<% if article.data.link %>
+<small> <%= article.date.strftime('%e of %B, %Y') %> | <%= link_to 'Permalink', article %> </small>
+
+<% else %>
+
+<small> <%= article.date.strftime('%e of %B, %Y') %> </small>
+
+<% end %>
+
     <%= article.body %>
   <% end %>
   <center> 

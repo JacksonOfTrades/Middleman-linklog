@@ -17,8 +17,17 @@
     <script src="js/vendor/modernizr-2.6.1.min.js"></script>
   </head>
   <body>
-         <% page_articles.index do |article, i| %>
-      <h3><%= link_to current_article.title %></h3>
+        <% page_articles.index do |article, i| %>
+              
+      <% if current_article.data.link %>
+        <!-- Link post -->
+        <h3><%= link_to current_article.title, current_article.data.link %></h3>
+        
+      <% else %>
+      
+      <!-- Non link post -->
+      <h3 class="non-link"><%= current_article.title %></h3>
+<% end %>
       <%= article.date.strftime('%b %e %Y') %> 
       <%= yield %>
       <% end %>   
